@@ -1,5 +1,22 @@
-# volumes:
+volumes:
+  postgres-data:
+      external: true
+  pg-admin:
+    external: true
+
 services:
+  postgres:
+      build:
+          context: ./relational-data
+          dockerfile: ./Dockerfile.dev
+      volumes:
+          - postgres-data:/var/lib/postgresql/data
+      environment:
+          - POSTGRES_MULTIPLE_DATABASES=users,stores_favorites_drinks
+          - POSTGRES_PASSWORD=test-databases
+      ports:
+          - 15432:5432
+
   users:
     build:
       context: ./users
@@ -8,7 +25,24 @@ services:
       - 8080:8000
     volumes:
       - ./users:/app
-      
+    environment: 
+      DATABASE_URL: postgresql://users:password@postgres/users
+      WAIT_HOSTS: postgres:5432 
+      SIGNING_KEY: ${SIGNING_KEY}
+
+  stores_favorites_drinks:
+    build:
+      context: ./stores_favorites_drinks
+      dockerfile: ./Dockerfile.dev
+    ports:
+      - 8090:8000
+    volumes:
+      - ./stores_favorites_drinks:/app
+    environment: 
+      DATABASE_URL: postgresql://stores_favorites_drinks:password@postgres/stores_favorites_drinks
+      WAIT_HOSTS: postgres:5432 
+      SIGNING_KEY: ${SIGNING_KEY}
+ 
   ghi:
     image: node:lts-bullseye
     command: /bin/bash run.sh
@@ -21,5 +55,16 @@ services:
       HOST_OS: ${OS}
       NODE_ENV: development
       HOST: "0.0.0.0"
-      PUBLIC_URL: http://localhost:3000
       REACT_APP_USERS_API_HOST: http://localhost:8080
+      REACT_APP_STORES_FAVORITES_DRINKS_API_HOST: http://localhost:8090
+
+  pg-admin:
+    image: dpage/pgadmin4
+    volumes:
+      - pg-admin:/var/lib/pgadmin
+    ports:
+      - 8082:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: username@email.com
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_DISABLE_POSTFIX: 1

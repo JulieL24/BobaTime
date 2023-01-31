@@ -1,0 +1,5 @@
+# this makes sure that when Windows users clone the files in the repository, special files like SQL files and Shell scripts have the expected LF line endings rather than CRLF line endings that Windows uses by default.
+
+* text=auto
+*.sql text eol=lf
+*.sh text eol=lf
