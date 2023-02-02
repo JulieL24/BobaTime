@@ -1,11 +1,15 @@
+# from authenticator import authenticator
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from routers import users 
+import os 
 
 app = FastAPI()
 
 origins = [
     "http://localhost",
     "http://localhost:3000",
+    os.environ.get("CORS_HOST", "REACT_APP_USERS_API_HOST"),
 ]
 
 app.add_middleware(
@@ -16,7 +20,5 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
+app.include_router(users.router)
+# app.include_router(authenticator.router)

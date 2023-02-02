@@ -1,16 +1,16 @@
 volumes:
-  postgres-data:
+  boba-postgres-data:
       external: true
   pg-admin:
     external: true
 
 services:
-  postgres:
+  postgres-db:
       build:
           context: ./relational-data
           dockerfile: ./Dockerfile.dev
       volumes:
-          - postgres-data:/var/lib/postgresql/data
+          - boba-postgres-data:/var/lib/postgresql/data
       environment:
           - POSTGRES_MULTIPLE_DATABASES=users,stores_favorites_drinks
           - POSTGRES_PASSWORD=test-databases
@@ -26,8 +26,8 @@ services:
     volumes:
       - ./users:/app
     environment: 
-      DATABASE_URL: postgresql://users:password@postgres/users
-      WAIT_HOSTS: postgres:5432 
+      DATABASE_URL: postgresql://users:password@postgres-db/users
+      WAIT_HOSTS: postgres-db:5432 
       SIGNING_KEY: ${SIGNING_KEY}
 
   stores_favorites_drinks:
@@ -39,8 +39,8 @@ services:
     volumes:
       - ./stores_favorites_drinks:/app
     environment: 
-      DATABASE_URL: postgresql://stores_favorites_drinks:password@postgres/stores_favorites_drinks
-      WAIT_HOSTS: postgres:5432 
+      DATABASE_URL: postgresql://stores_favorites_drinks:password@postgres-db/stores_favorites_drinks
+      WAIT_HOSTS: postgres-db:5432 
       SIGNING_KEY: ${SIGNING_KEY}
  
   ghi:
