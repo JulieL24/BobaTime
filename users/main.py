@@ -1,4 +1,4 @@
-# from authenticator import authenticator
+from authenticator import authenticator
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routers import users 
@@ -21,4 +21,4 @@ app.add_middleware(
 )
 
 app.include_router(users.router)
-# app.include_router(authenticator.router)
+app.include_router(authenticator.router)
