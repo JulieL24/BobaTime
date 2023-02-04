@@ -1,0 +1,25 @@
+.nav-bg-color{
+    /* background-color: rgb(106, 128, 124); */
+    background-color: rgb(194, 163, 129);
+  }
+
+  .boba-logo{
+    margin-left: 10px; 
+  }
+
+  .store-slogan{
+    margin-top: 28px; 
+    padding: 168px; 
+    color: rgb(65, 65, 143);
+  }
+
+  .home-photo {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .page-top {
+    margin-top: 180px; 
+  }
+
+  

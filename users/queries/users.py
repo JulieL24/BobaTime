@@ -67,12 +67,12 @@ class UserRepository:
                     """,
                     [email],
                 )
-                for row in cur.fetchall():
-                    record = {}
+                row = cur.fetchone()
+                if row is not None:
+                    record= {}
                     for i, column in enumerate(cur.description):
                         record[column.name] = row[i]
-                    if record is not None:
-                        return record
+                    return record
                 raise HTTPException(status_code=404, detail="Invalid email or password")
 
 
