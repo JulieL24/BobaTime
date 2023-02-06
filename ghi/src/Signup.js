@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useToken } from './LoginToken';
+import SignupError from './SignupError';
 
 function SignupForm(){
     const [firstName, setFirstName] = useState('');
@@ -8,13 +9,14 @@ function SignupForm(){
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const signup = useToken()[3]; 
-
+    const [showError, setShowError] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault(); 
         try {
             await signup(firstName, lastName, email, username, password);
-        } catch (error) {
+        } catch (error) {   
+            setShowError(true);
             console.log("There was an error creating your account")
         }
     }
@@ -49,6 +51,10 @@ function SignupForm(){
                     </form>
                 </div>
             </div>
+            <SignupError
+                show={showError}
+                onHide={() => setShowError(false)}
+            />
       </div>
     );
 
