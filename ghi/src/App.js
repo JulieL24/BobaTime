@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SiteNav from './Nav';
 import { AuthProvider, useToken } from './LoginToken';
-import LoginComponent from './Login';
+import LoginForm from './Login';
 import SignupForm from './Signup';
 import Profile from './Profile';
 import Home from './Homepage';
@@ -26,9 +26,9 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route>
-                <Route path="/login" element={<LoginComponent/>} />
-                <Route path="/signup" element={<SignupForm/>} />
                 <Route path="/profile" element={<Profile/>} />
+                <Route path="/login" element={<LoginForm/>} />
+                <Route path="/signup" element={<SignupForm/>} />
             </Route>
           </Routes>
         </div>

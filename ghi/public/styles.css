@@ -3,23 +3,33 @@
     background-color: rgb(194, 163, 129);
   }
 
-  .boba-logo{
-    margin-left: 10px; 
-  }
+.boba-logo {
+  margin-left: 10px; 
+}
 
-  .store-slogan{
-    margin-top: 28px; 
-    padding: 168px; 
-    color: rgb(65, 65, 143);
-  }
+.store-slogan {
+  margin-top: 28px; 
+  padding: 168px; 
+  color: rgb(65, 65, 143);
+}
 
-  .home-photo {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
+.home-photo {
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
-  .page-top {
-    margin-top: 180px; 
-  }
+.page-top {
+  margin-top: 180px; 
+}
 
-  
+.nav-link {
+  color:rgb(237, 237, 221)
+}
+
+.navbar-nav .nav-link.active {
+  color: rgb(39, 47, 163);
+}
+
+.navbar-nav {
+  --bs-nav-link-hover-color: rgb(193, 122, 193); 
+}

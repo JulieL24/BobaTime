@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { useToken } from './LoginToken';
+// import { useState } from 'react';
+// import { useToken } from './LoginToken';
 
 function Profile(){
-    const [token, login] = useToken();
+    // const [token, login] = useToken();
 
 
     return (

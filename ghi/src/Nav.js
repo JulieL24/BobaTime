@@ -3,9 +3,14 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { useToken } from './LoginToken';
+import { useState } from 'react';
+import LogoutModal from './Logout';
+
 
 function SiteNav() {
-    const [token] = useToken()
+    const token = useToken()[0];
+    // console.log(token);
+    const [logoutModal, setLogoutModal] = useState(false); 
 
     return (
         <>
@@ -25,14 +30,17 @@ function SiteNav() {
                         </NavLink>
                     </Nav>
                     <Nav>
-                        {/* <NavLink className= {token ? 'nav-link' : 'd-none'} to="/profile">Profile</NavLink> */}
-                        <NavLink className='nav-link' to="/profile">Profile</NavLink>
+                        <NavLink className={token ? 'nav-link' : 'd-none'} to="/profile">Profile</NavLink>
                         <NavLink className={token ? 'd-none' : 'nav-link'} to="/login">Login</NavLink>
                         <NavLink className={token ? 'd-none' : 'nav-link'} to="/signup">Signup</NavLink>
-
+                        <NavLink className={token ? 'nav-link' : 'd-none'} to="#" onClick={() => setLogoutModal(true)}>Logout</NavLink>
                     </Nav>
                 </Container>
             </Navbar>
+            <LogoutModal 
+                show={logoutModal} 
+                onHide={() => setLogoutModal(false)} 
+            />
         </>
     )
 }

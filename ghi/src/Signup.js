@@ -1,20 +1,30 @@
 import { useState } from 'react';
 import { useToken } from './LoginToken';
 
-function SignupForm(props){
+function SignupForm(){
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const signup = useToken()[2]; 
+    const signup = useToken()[3]; 
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault(); 
+        try {
+            await signup(firstName, lastName, email, username, password);
+        } catch (error) {
+            console.log("There was an error creating your account")
+        }
+    }
 
     return (
         <div className="row page-top">
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                     <h2>Signup</h2>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <label htmlFor="firstName" className="form-label">First Name</label>
                             <input value={firstName} onChange={e => setFirstName(e.target.value)}required type="text" className="form-control" id="firstName" placeholder="first name" />
