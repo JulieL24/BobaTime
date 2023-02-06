@@ -1,6 +1,31 @@
 import { useState } from 'react';
 import { useToken } from './LoginToken';
-import SignupError from './SignupError';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
+function SignupError(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            <h3>Error!</h3>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div>Unable to create account. </div>
+          <div>Please try again with another email or username.</div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
 
 function SignupForm(){
     const [firstName, setFirstName] = useState('');
@@ -10,6 +35,7 @@ function SignupForm(){
     const [password, setPassword] = useState('');
     const signup = useToken()[3]; 
     const [showError, setShowError] = useState(false);
+    const [hidePassword, setHidePassword] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault(); 
@@ -20,6 +46,12 @@ function SignupForm(){
             console.log("There was an error creating your account")
         }
     }
+
+    const toggleBtn = (e) => {
+        e.preventDefault();
+        setHidePassword(prevState => !prevState);
+    }
+    
 
     return (
         <div className="row page-top">
@@ -45,8 +77,12 @@ function SignupForm(){
                         </div>
                         <div className="mb-4">
                             <label htmlFor="password" className="form-label">Password</label>
-                            <input value={password} onChange={e => setPassword(e.target.value)} required type="password" className="form-control" id="password" placeholder='password' />
+                            <input value={password} onChange={e => setPassword(e.target.value)} required type={hidePassword ? "text" : "password"} className="form-control" id="password" placeholder='password' />
                         </div>
+                        <button className="btn btn-primary me-4" onClick={(e) => toggleBtn(e)}>
+                        {hidePassword ? "Hide password" : "View password"
+                        }
+                      </button>
                         <button type="submit" className="btn btn-primary">Submit</button>
                     </form>
                 </div>
@@ -57,7 +93,6 @@ function SignupForm(){
             />
       </div>
     );
-
 }
 
 export default SignupForm
