@@ -1,20 +1,12 @@
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { useToken } from './LoginToken';
+import { useAuthContext, useToken } from './LoginToken';
 
 function Profile(){
-    const token = useToken()[0];
-  
+    // const token = useToken()[0];
+    const [currentUser, setCurrentUser] = useState([]);
+    const {token} = useAuthContext(); 
 
-
-    return (
-        <div className="container">
-            <div className="page-top">
-            hi
-                
-            </div>
-        </div>
-    );
 
 }
 

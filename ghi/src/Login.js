@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { useToken, useAuthContext } from './LoginToken';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
 
 
 function LoginError(props) {
@@ -34,6 +36,8 @@ function LoginForm(){
     const [hidePassword, setHidePassword] = useState(false);
     const [showLoginError, setShowLoginError] = useState(false);
     const {token} = useAuthContext(); 
+    const navigate = useNavigate();
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -45,6 +49,12 @@ function LoginForm(){
           setShowLoginError(true);
         }
     }
+
+    useEffect(() => {
+      if (token) {
+        navigate("/profile");
+      }
+    }, [navigate, token]);
 
 
     const toggleBtn = (e) => {
@@ -85,7 +95,6 @@ function LoginForm(){
             </div> 
         </div>
     );
-
 }
 
 export default LoginForm
