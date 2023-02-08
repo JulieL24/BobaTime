@@ -33,3 +33,8 @@
 .navbar-nav {
   --bs-nav-link-hover-color: rgb(193, 122, 193); 
 }
+
+/* profile page */
+.welcome-tag {
+  color: blue; 
+}
