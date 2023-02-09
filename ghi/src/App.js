@@ -6,6 +6,7 @@ import SignupForm from './Signup';
 import Profile from './Profile';
 import Home from './Homepage';
 import PrivateRoute from './PrivateRoute';
+import StoresList from './StoreList';
 
 
 const domain = /https:\/\/[^/]+/;
@@ -27,6 +28,7 @@ function App() {
         <div className="container">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/boba_stores" element={<StoresList />} />
             <Route>
                 <Route path="/profile"  element={<PrivateRoute>
                   <Profile />

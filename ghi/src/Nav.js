@@ -25,9 +25,7 @@ function SiteNav() {
                 </NavLink>
                 <Container>
                     <Nav>
-                        <NavLink className="nav-link" to="">
-                            <h4>List of Stores</h4>
-                        </NavLink>
+                        <NavLink className="nav-link" to="/boba_stores">Boba Stores</NavLink>
                     </Nav>
                     <Nav>
                         <NavLink className={token ? 'nav-link' : 'd-none'} to="/profile">Profile</NavLink>

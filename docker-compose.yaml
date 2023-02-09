@@ -42,6 +42,7 @@ services:
       DATABASE_URL: postgresql://stores_favorites_drinks:password@postgres-db/stores_favorites_drinks
       WAIT_HOSTS: postgres-db:5432 
       SIGNING_KEY: ${SIGNING_KEY}
+      YELP_API_KEY: ${YELP_API_KEY}
  
   ghi:
     image: node:lts-bullseye
