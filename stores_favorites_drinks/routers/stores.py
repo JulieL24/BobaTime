@@ -19,6 +19,7 @@ class YelpApi:
             BUSINESS_SEARCH, headers=headers, params=params
         )
 
+
 @router.get("/yelp-api/bobastores")
 async def get_stores_list(
     location, 
@@ -30,8 +31,8 @@ async def get_stores_list(
         "term" : "boba milk tea",
         "location": location,
         "rating": rating,
-        "radius": 1500,
-        "limit": 2,
+        "radius": 11000,
+        "limit": 18,
         "sort_by": "rating",
     }
 
