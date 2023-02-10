@@ -5,4 +5,15 @@ If you're unsure of which boba place to visit, create an account, then specify a
 
 More features to be added....
 
+#### Homepage
+![context map of the application](/readme-img/homepage.png)
 
+
+#### Search
+![context map of the application](/readme-img/search.png)
+
+#### List of Stores
+![context map of the application](/readme-img/stores_list.png)
+
+#### Recommended Store
+![context map of the application](/readme-img/recommended.png)
